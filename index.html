@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kumar Saurabh — Technical Product Manager</title>
+  <link rel="canonical" href="https://kumar-saurabh.dev" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0B1F3A;
+      --navy-mid: #132C50;
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --cream: #F5F0E8;
+      --white: #FDFCFA;
+      --muted: #8A9BB0;
+      --text: #1A2E45;
+      --border: #D8CFC0;
+      --section-bg: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 3rem;
+      height: 60px;
+      border-bottom: 2px solid var(--gold);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--cream); font-size: 0.82rem; letter-spacing: 0.08em;
+      text-transform: uppercase; text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+
+    /* ── HERO ── */
+    header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1A3A60 100%);
+      color: var(--white);
+      padding: 5rem 3rem 4rem;
+      position: relative; overflow: hidden;
+      animation: fadeDown 0.8s ease both;
+    }
+    header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(201,168,76,0.04) 40px,
+        rgba(201,168,76,0.04) 41px
+      );
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 900px; margin: 0 auto; position: relative; }
+    .hero-tag {
+      display: inline-block;
+      background: var(--gold); color: var(--navy);
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 0.3rem 0.85rem;
+      border-radius: 2px; margin-bottom: 1.2rem;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 6vw, 4rem);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.01em; margin-bottom: 0.6rem;
+    }
+    .hero-sub {
+      font-size: 1rem; color: var(--gold-light); font-weight: 300;
+      letter-spacing: 0.05em; margin-bottom: 1.5rem;
+    }
+    .hero-summary {
+      max-width: 720px; font-size: 0.95rem;
+      color: rgba(255,255,255,0.82); line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .hero-contacts { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .contact-chip {
+      display: flex; align-items: center; gap: 0.45rem;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 4px; padding: 0.4rem 0.85rem;
+      font-size: 0.82rem; color: var(--cream);
+      text-decoration: none; transition: background 0.2s, border-color 0.2s;
+    }
+    .contact-chip:hover { background: rgba(201,168,76,0.15); border-color: var(--gold); }
+    .contact-chip svg { width: 14px; height: 14px; fill: var(--gold); flex-shrink: 0; }
+
+    /* ── LAYOUT ── */
+    .page { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+
+    /* ── SECTION ── */
+    section { margin-bottom: 3rem; animation: fadeUp 0.6s ease both; }
+    section:nth-child(2) { animation-delay: 0.1s; }
+    section:nth-child(3) { animation-delay: 0.2s; }
+    section:nth-child(4) { animation-delay: 0.3s; }
+    section:nth-child(5) { animation-delay: 0.4s; }
+
+    .section-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+    .section-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.65rem; font-weight: 600;
+      color: var(--navy); letter-spacing: 0.01em;
+    }
+    .section-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+    }
+
+    /* ── SKILLS GRID ── */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem;
+    }
+    .skill-card {
+      background: var(--section-bg);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--gold);
+      border-radius: 6px; padding: 1.25rem 1.4rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(11,31,58,0.09); }
+    .skill-card h3 {
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500; margin-bottom: 0.65rem;
+    }
+    .skill-card p { font-size: 0.88rem; color: #4A5E72; line-height: 1.65; }
+
+    /* ── PROJECTS ── */
+    .projects-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+    .project-card {
+      background: var(--section-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.6rem 1.8rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .project-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 4px; background: var(--gold);
+    }
+    .project-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(11,31,58,0.1); }
+    .project-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.75rem; }
+    .project-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 600; color: var(--navy);
+    }
+    .project-link {
+      font-size: 0.78rem; color: var(--gold); text-decoration: none;
+      border: 1px solid var(--gold); border-radius: 3px;
+      padding: 0.25rem 0.65rem; white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+    .project-link:hover { background: var(--gold); color: var(--navy); }
+    .project-desc { font-size: 0.9rem; color: #4A5E72; line-height: 1.7; margin-bottom: 1rem; }
+    .project-bullets { list-style: none; margin-bottom: 1rem; }
+    .project-bullets li {
+      font-size: 0.875rem; color: #3A5068; line-height: 1.65;
+      padding: 0.2rem 0 0.2rem 1.1rem; position: relative;
+    }
+    .project-bullets li::before {
+      content: '›'; position: absolute; left: 0;
+      color: var(--gold); font-size: 1rem;
+    }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .tech-tag {
+      font-size: 0.74rem; background: #EEF2F7; color: var(--navy-mid);
+      border-radius: 3px; padding: 0.2rem 0.55rem; letter-spacing: 0.03em;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-card {
+      background: var(--section-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.6rem 1.8rem;
+      margin-bottom: 1.25rem;
+      transition: box-shadow 0.2s;
+    }
+    .exp-card:hover { box-shadow: 0 6px 24px rgba(11,31,58,0.08); }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.3rem; }
+    .exp-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 600; color: var(--navy);
+    }
+    .exp-date {
+      font-size: 0.78rem; color: var(--muted);
+      background: #F0EDE8; border-radius: 3px; padding: 0.2rem 0.6rem;
+      white-space: nowrap;
+    }
+    .exp-role {
+      font-size: 0.82rem; color: var(--gold); font-weight: 500;
+      letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.9rem;
+    }
+    .exp-bullets { list-style: none; }
+    .exp-bullets li {
+      font-size: 0.875rem; color: #4A5E72; line-height: 1.7;
+      padding: 0.2rem 0 0.2rem 1.1rem; position: relative;
+    }
+    .exp-bullets li::before {
+      content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.8rem; top: 0.3rem;
+    }
+
+    /* JP Morgan sub-projects */
+    .sub-projects {
+      margin-top: 1rem; padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .sub-projects h4 {
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.6rem;
+    }
+    .sub-project-list { display: flex; flex-direction: column; gap: 0.3rem; }
+    .sub-project-list li {
+      font-size: 0.83rem; color: #4A5E72; list-style: none;
+      padding-left: 1rem; position: relative;
+    }
+    .sub-project-list li::before { content: '·'; position: absolute; left: 0; color: var(--gold); }
+
+    /* ── EDUCATION ── */
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+    .edu-card {
+      background: var(--section-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px; padding: 1.3rem 1.5rem;
+      transition: box-shadow 0.2s;
+    }
+    .edu-card:hover { box-shadow: 0 4px 16px rgba(11,31,58,0.08); }
+    .edu-card .degree {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 0.25rem;
+    }
+    .edu-card .institution { font-size: 0.85rem; color: var(--gold); margin-bottom: 0.2rem; font-weight: 500; }
+    .edu-card .edu-note { font-size: 0.8rem; color: var(--muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy); color: rgba(255,255,255,0.45);
+      text-align: center; padding: 1.75rem;
+      font-size: 0.8rem; letter-spacing: 0.04em;
+      border-top: 2px solid var(--gold);
+    }
+    footer a { color: var(--gold-light); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { gap: 1rem; }
+      header { padding: 3rem 1.25rem; }
+      .page { padding: 2rem 1.25rem; }
+      .project-top { flex-direction: column; }
+      .exp-header { flex-direction: column; gap: 0.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Kumar Saurabh</span>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header>
+  <div class="hero-inner">
+    <span class="hero-tag">Technical Product Manager · AI / FinTech</span>
+    <h1>Kumar Saurabh</h1>
+    <p class="hero-sub">Jersey City, NJ · Available June 2026</p>
+    <p class="hero-summary">
+      Technical Product Manager with proven expertise transforming mission-critical trading platforms
+      handling $500B+ in daily trade volume across global markets. Combines strategic product vision
+      with deep technical knowledge to deliver complex financial solutions under regulatory compliance.
+      Currently completing an MS in Computer Science (AI) at Stevens Institute of Technology — graduating May 2026.
+    </p>
+    <div class="hero-contacts">
+      <a class="contact-chip" href="mailto:ksaurabh264461@gmail.com">
+        <svg viewBox="0 0 20 20"><path d="M2 4a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2 0v.217l6 4.5 6-4.5V4H4zm12 2.383l-6 4.5-6-4.5V16h12V6.383z"/></svg>
+        ksaurabh264461@gmail.com
+      </a>
+      <a class="contact-chip" href="mailto:ksaurabh@stevens.edu">
+        <svg viewBox="0 0 20 20"><path d="M2 4a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2 0v.217l6 4.5 6-4.5V4H4zm12 2.383l-6 4.5-6-4.5V16h12V6.383z"/></svg>
+        ksaurabh@stevens.edu
+      </a>
+      <a class="contact-chip" href="tel:+12015265631">
+        <svg viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.773-1.548a1 1 0 011.059-.54l4.435.74A1 1 0 0118 14.847V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+        +1 (201) 526-5631
+      </a>
+      <a class="contact-chip" href="https://www.linkedin.com/in/ksaurabh264461/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 20 20"><path d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014V7.998h2.558v1.17h.036c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.465zM5.005 6.83a1.498 1.498 0 110-2.996 1.498 1.498 0 010 2.996zm1.337 9.508H3.667V7.998h2.675v8.34zM17.668 2H2.328C1.595 2 1 2.58 1 3.298v13.403C1 17.42 1.595 18 2.328 18h15.34C18.408 18 19 17.42 19 16.701V3.298C19 2.58 18.408 2 17.668 2z"/></svg>
+        LinkedIn
+      </a>
+      <a class="contact-chip" href="https://github.com/smitsaurabh" target="_blank" rel="noopener">
+        <svg viewBox="0 0 20 20"><path d="M10 2C5.58 2 2 5.58 2 10c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0018 10c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+
+  <!-- CORE COMPETENCIES & SKILLS -->
+  <section id="skills">
+    <div class="section-header">
+      <h2>Skills & Competencies</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>AI / GenAI</h3>
+        <p>LLMs, Autoencoders, GANs, Diffusion Models, Prompt Engineering, Agentic AI, RAG, LangChain, LangGraph</p>
+      </div>
+      <div class="skill-card">
+        <h3>ML / DL Frameworks</h3>
+        <p>TensorFlow, PyTorch, Keras, Scikit-Learn, XGBoost</p>
+      </div>
+      <div class="skill-card">
+        <h3>Product & Delivery</h3>
+        <p>Agile / Scrum, Business Requirement Analysis, Application Design, Database Design, TDD / BDD, Release Management</p>
+      </div>
+      <div class="skill-card">
+        <h3>Languages & Scripting</h3>
+        <p>Python, Java (Spring), PL/SQL, Unix Shell Scripting, XML, HTML, RESTful Services, JUnit, Mockito</p>
+      </div>
+      <div class="skill-card">
+        <h3>Databases</h3>
+        <p>SQL Server, Sybase, Stored Procedures, Triggers, Functions, Views, Data & DB Migration</p>
+      </div>
+      <div class="skill-card">
+        <h3>DevOps & Tools</h3>
+        <p>AWS, CI/CD, Maven, Gradle, Confluence, JIRA, TOAD, SQL Server Studio, Automated Job Schedulers, Geneos</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRENT PROJECTS -->
+  <section id="projects">
+    <div class="section-header">
+      <h2>Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid">
+
+      <!-- ClassCast -->
+      <div class="project-card">
+        <div class="project-top">
+          <h3>ClassCast — Real-Time Distributed Lecture Assistant</h3>
+          <a class="project-link" href="https://github.com/smitsaurabh/ClassCast" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+        <p class="project-desc">
+          An AI-powered educational platform running on a decentralized local-network. Two laptops on the same Wi-Fi become a broadcast system: a Teacher Node captures speech, transcribes it locally, extracts concepts, and streams interactive HTML visualizations to students' browsers — no cloud, no app install required.
+        </p>
+        <ul class="project-bullets">
+          <li>Two-node LAN topology: Python/FastAPI teacher host streams to student thin clients over a browser URL with zero cloud deployment.</li>
+          <li>Offline real-time transcription via <em>faster-whisper</em> running on host hardware — cost-free speech-to-text in background tasks.</li>
+          <li>Concurrent LLM pipeline using LangGraph + <em>asyncio.gather</em> to parallelize fast text summaries and complex HTML visual rendering.</li>
+          <li>Secure visual sandboxing: AI-generated HTML/CSS/JS injected into isolated iframes for safe dynamic animations on student interfaces.</li>
+        </ul>
+        <div class="tech-tags">
+          <span class="tech-tag">Python 3.11+</span>
+          <span class="tech-tag">FastAPI</span>
+          <span class="tech-tag">LangGraph</span>
+          <span class="tech-tag">LangChain</span>
+          <span class="tech-tag">Gemini 2.5 Flash</span>
+          <span class="tech-tag">faster-whisper</span>
+          <span class="tech-tag">WebSockets</span>
+          <span class="tech-tag">SSE</span>
+          <span class="tech-tag">SQLite</span>
+        </div>
+      </div>
+
+      <!-- DroneWatch -->
+      <div class="project-card">
+        <div class="project-top">
+          <h3>DroneWatch — Multi-Agent Vision AI System</h3>
+          <a class="project-link" href="https://github.com/smitsaurabh/DroneWatch/" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+        <p class="project-desc">
+          A real-time multimodal surveillance assistant enabling natural voice interaction with live camera feeds — no traditional object-detection models required.
+        </p>
+        <ul class="project-bullets">
+          <li>Engineered a 3-tier Agent-to-Agent (A2A) microservices backend in Python/FastAPI: Vision Agent (frame analysis), NYC Data Agent (API integrations), and an Orchestrator (voice/text routing).</li>
+          <li>Integrated NYC Open Data APIs to overlay live contextual city data (traffic feeds, incident reports) over real-time visual analysis.</li>
+          <li>Built a low-latency WebRTC/Streaming frontend with React + Vite, using AudioWorklet and MediaRecorder APIs for full-duplex push-to-talk over WebSockets.</li>
+        </ul>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">FastAPI</span>
+          <span class="tech-tag">Gemini 2.5 Flash</span>
+          <span class="tech-tag">A2A Architecture</span>
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Vite</span>
+          <span class="tech-tag">WebRTC</span>
+          <span class="tech-tag">WebSockets</span>
+          <span class="tech-tag">NYC Open Data API</span>
+        </div>
+      </div>
+
+      <!-- RAG MySQL Bot -->
+      <div class="project-card">
+        <div class="project-top">
+          <h3>RAG MySQL Bot — Schema-Aware Natural Language DB Query</h3>
+          <a class="project-link" href="https://github.com/smitsaurabh/rag-mysql-bot" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+        <p class="project-desc">
+          A schema-aware RAG chatbot enabling natural language querying over MySQL databases. Uses semantic search over DB schemas to generate accurate SQL, falls back to vector search or live web search when structured data is insufficient, and auto-adapts to schema changes — all powered by a local LLM with no cloud dependency.
+        </p>
+        <ul class="project-bullets">
+          <li><strong>Query Classification</strong> — LLM-driven classifier (with regex fallback) routes each question to the right tool: SQL, vector search, or web search.</li>
+          <li><strong>Schema Layer</strong> — DB schema is introspected, embedded, and stored in a vector store; semantic search retrieves the most relevant tables before SQL generation.</li>
+          <li><strong>Text-to-SQL</strong> — Local LLM generates SQL from relevant tables with EXPLAIN-based validation and one-retry self-correction on errors.</li>
+          <li><strong>Row-Level Vector Store</strong> — Text columns from MySQL rows are chunked and embedded for semantic similarity search when SQL returns no results.</li>
+          <li><strong>Web Search Fallback</strong> — Provider-agnostic layer (Perplexity → Tavily → DuckDuckGo) handles questions outside the database.</li>
+          <li><strong>CDC Pipeline</strong> — Change Data Capture (polling) keeps the vector store in sync with live DB changes automatically.</li>
+          <li><strong>Schema Watcher</strong> — Detects ALTER / CREATE / DROP TABLE events and re-indexes only the affected tables.</li>
+          <li><strong>Chat API + UI</strong> — FastAPI server with SQLite-backed conversation history and a browser-based chat interface.</li>
+        </ul>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">LangGraph</span>
+          <span class="tech-tag">LangChain</span>
+          <span class="tech-tag">FastAPI</span>
+          <span class="tech-tag">MySQL</span>
+          <span class="tech-tag">SQLite</span>
+          <span class="tech-tag">Vector Store</span>
+          <span class="tech-tag">Text-to-SQL</span>
+          <span class="tech-tag">RAG</span>
+          <span class="tech-tag">CDC Pipeline</span>
+          <span class="tech-tag">Local LLM</span>
+          <span class="tech-tag">Perplexity / Tavily / DuckDuckGo</span>
+        </div>
+      </div>
+
+      <!-- SimplyFi -->
+      <div class="project-card">
+        <div class="project-top">
+          <h3>Next-Gen Fixed-Income Analytics & Trading Platform</h3>
+          <a class="project-link" href="https://simplyfi.co.in/" target="_blank" rel="noopener">Live Site ↗</a>
+        </div>
+        <p class="project-desc">
+          Led end-to-end development of a comprehensive bond trading ecosystem designed for institutional-grade price discovery and portfolio optimization across Govt, Corporate, Municipal, and REIT/InVit instruments.
+        </p>
+        <ul class="project-bullets">
+          <li>Architected a hybrid dual-database system: MySQL for structured transactional integrity and MongoDB for flexible, high-volume security metadata.</li>
+          <li>Scaled automated ingestion engines using APIs, web crawlers, and LLMs to aggregate real-time data across multiple fixed-income instrument types.</li>
+          <li>Directed implementation of Quantitative and ML models for risk-based pricing and default prediction, powering a proprietary internal scoring system.</li>
+          <li>Built portfolio construction tools for Principal Protection, Target Returns, and Liquidity Management mandates.</li>
+          <li>Spearheaded UI/UX strategy with React and React Native for seamless cross-platform web and mobile delivery.</li>
+        </ul>
+        <div class="tech-tags">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">React Native</span>
+          <span class="tech-tag">MySQL</span>
+          <span class="tech-tag">MongoDB</span>
+          <span class="tech-tag">Python Bots</span>
+          <span class="tech-tag">LLMs</span>
+          <span class="tech-tag">Scikit-Learn</span>
+          <span class="tech-tag">TensorFlow</span>
+          <span class="tech-tag">Fixed Income Domain</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header">
+      <h2>Professional Experience</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <!-- JP Morgan -->
+    <div class="exp-card">
+      <div class="exp-header">
+        <h3>J.P. Morgan Chase &amp; Co. — India, USA &amp; UK</h3>
+        <span class="exp-date">Aug 2009 – Aug 2024</span>
+      </div>
+      <div class="exp-role">Software Engineer · Product Manager · DevOps · QA</div>
+      <ul class="exp-bullets">
+        <li>Core member of the Liquidity Technology team driving a multi-year, next-generation trading platform initiative for the Global Liquidity business, including decommissioning legacy platforms.</li>
+        <li>Acted as point-of-contact for the front office desk, ensuring trades executed in system were settled in market and the platform remained operationally stable.</li>
+        <li>Managed end-to-end delivery: scope, activity sequencing, effort estimation, risk analysis, and quality management aligned with firm guidelines.</li>
+        <li>Led a 1+ year database migration from Sybase to SQL Server, coordinating multiple global teams and delivering with minimum production issues.</li>
+        <li>Automated 100+ internal and external reports, eliminating manual effort across all user types and significantly improving operational efficiency.</li>
+        <li>Successfully delivered key regulatory projects including US and European Money Market Reforms and MiFID trade reporting to external regulators within stipulated timeframes.</li>
+        <li>As Application Owner (Feb 2021–2023): drove platform upgrades and resolved endurability issues.</li>
+        <li>As Scrum Master (2019–2021): collaborated with users to prioritize enhancements for the trading platform backlog.</li>
+        <li>As Release Manager (Nov 2016–2019): managed 100+ production releases with minimal defect slippage and rollbacks through diligent pre/post-production checkouts.</li>
+        <li>Implemented Geneos alerting tool to pre-empt production issues based on historical patterns, significantly reducing platform downtime and rollbacks.</li>
+        <li>Grew team from 3 to 7 engineers plus 4 additional vendor resources based on delivery quality.</li>
+        <li>Repriced and recomputed net asset value during trading hours in Java using account-level locking; provided real-time updated data for trading compliance.</li>
+      </ul>
+      <div class="sub-projects">
+        <h4>Key Projects at JP Morgan</h4>
+        <ul class="sub-project-list">
+          <li>Spectrum Trading Money Markets (Trading Platform) — Jan 2016 – Aug 2024</li>
+          <li>Database Migration: Sybase → MSSQL — Dec 2022 – Nov 2023</li>
+          <li>European Money Market Reforms — Jan 2018 – Nov 2018</li>
+          <li>MiFID — Money Market Trade Reporting — Jan 2017 – Dec 2017</li>
+          <li>US Money Market Reform — Nov 2015 – Oct 2016</li>
+          <li>Legacy Money Market Trading Platform — Jan 2013 – Jan 2017</li>
+          <li>GWM Projects (Dodd Frank, Account Opening, Workstation) — Aug 2009</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Citigroup -->
+    <div class="exp-card">
+      <div class="exp-header">
+        <h3>Citigroup Global Services</h3>
+        <span class="exp-date">Mumbai, India</span>
+      </div>
+      <div class="exp-role">Technology</div>
+    </div>
+
+    <!-- Ctree -->
+    <div class="exp-card">
+      <div class="exp-header">
+        <h3>Ctree Info Tech Ltd</h3>
+        <span class="exp-date">Mumbai, India</span>
+      </div>
+      <div class="exp-role">Technology</div>
+    </div>
+
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-header">
+      <h2>Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="degree">M.S. Computer Science — AI</div>
+        <div class="institution">Stevens Institute of Technology, NJ, USA</div>
+        <div class="edu-note">Currently pursuing full-time · Graduating May 2026</div>
+      </div>
+      <div class="edu-card">
+        <div class="degree">PG Diploma in Business Management</div>
+        <div class="institution">Narsee Munji Institute of Management Studies, India</div>
+        <div class="edu-note">Business Administration</div>
+      </div>
+      <div class="edu-card">
+        <div class="degree">Bachelor of Technology</div>
+        <div class="institution">Sikkim Manipal Institute of Technology, India</div>
+        <div class="edu-note">Engineering</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 Kumar Saurabh &nbsp;·&nbsp; <a href="mailto:ksaurabh264461@gmail.com">ksaurabh264461@gmail.com</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/ksaurabh264461/" target="_blank">linkedin.com/in/ksaurabh264461</a></p>
+</footer>
+
+</body>
+</html>
